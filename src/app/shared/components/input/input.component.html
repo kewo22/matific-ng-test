@@ -1,0 +1,7 @@
+<div class="app-input-wrapper">
+    <label>{{label}}</label>
+    <input [type]="type" [(ngModel)]='value' (blur)="touched($event)" [placeholder]="placeholder" autocomplete="new-password">
+    <!-- <button type="submit">
+        <fa-icon [icon]="['fas', 'coffee']"></fa-icon>
+    </button> -->
+</div>

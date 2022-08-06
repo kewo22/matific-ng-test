@@ -1,0 +1,7 @@
+<div class="login-wrapper">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" autocomplete="off">
+        <app-input label="User Name" type="text" formControlName="userName"></app-input>
+        <app-input label="Password" type="password" formControlName="password"></app-input>
+        <app-button label="Login" type="Submit"></app-button>
+    </form>
+</div>

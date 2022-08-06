@@ -1,0 +1,19 @@
+.login-wrapper {
+  background-color: #bfd2ff;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    app-input {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

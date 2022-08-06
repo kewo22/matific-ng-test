@@ -1,0 +1,39 @@
+// colors
+$input-background: white;
+$input-text-inactive: #7881a1;
+$input-text-active: #bfd2ff;
+
+.app-input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  max-width: 400px;
+  font-size: 1.5rem;
+}
+
+.app-input-wrapper input {
+    background: $input-background;
+  border-radius: 2px;
+  border: 1px solid #c1c1c1;
+  padding: 0.5rem;
+  flex-grow: 1;
+  color: #6a6a6a;
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  &::-webkit-input-placeholder {
+    color: $input-text-inactive;
+  }
+}
+
+.app-input-wrapper button {
+  color: $input-text-inactive;
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  transition: color 0.25s;
+  &:hover {
+    color: $input-text-active;
+  }
+}
