@@ -1,8 +1,9 @@
-<select [(ngModel)]='value'>
-
-    <option default>Pick a team</option>
-    <option>Lakers</option>
-    <option>Miami</option>
-    <option>Cleveland</option>
-
-</select>
+<div class="select" for="slct">
+    <label>{{label}}</label>
+    <select id="slct" [(ngModel)]='value'>
+        <option *ngFor="let item of options; trackBy:trackByFn" [value]="item.value">{{item.text}}</option>
+    </select>
+    <span>
+        <fa-icon [icon]="['fas', 'angle-down']" size="sm"></fa-icon>
+    </span>
+</div>

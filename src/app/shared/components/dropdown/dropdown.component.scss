@@ -1,0 +1,36 @@
+.select {
+  position: relative;
+  width: 200px;
+  max-width: 400px;
+  font-size: 1.5rem;
+
+  span {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    stroke-width: 2px;
+    stroke: #9098a9;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+
+  select {
+    -webkit-appearance: none;
+    padding: 0.7rem;
+    width: 100%;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+    background: #ffffff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+

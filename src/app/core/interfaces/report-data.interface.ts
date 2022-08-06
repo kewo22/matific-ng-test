@@ -1,8 +1,11 @@
+import { ActivityData } from "./activity-data.interface";
+
 export interface ReportData {
-    dateCompleted: string;
+    dateCompleted: Date;
     content: string;
     type: string;
     skill: string;
-    result: string;
+    result: number;
     timeSpent: string;
+    payload: ActivityData;
 }

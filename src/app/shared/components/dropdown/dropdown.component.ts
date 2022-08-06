@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DropDownOptions } from 'src/app/core/interfaces/dropdown-options.interface';
 
 @Component({
   selector: 'app-dropdown',
@@ -15,7 +16,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class DropdownComponent implements OnInit, ControlValueAccessor {
 
-  _test = "";
+  @Input() label: string = 'label';
+  @Input() options: DropDownOptions[] = [];
+
+  _value = "";
 
   constructor() { }
 
@@ -23,12 +27,12 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
   }
 
   get value(): string {
-    return this._test;
+    return this._value;
   }
 
   set value(value: string) {
-    this._test = value;
-    this.propagateChange(this._test);
+    this._value = value;
+    this.propagateChange(this._value);
   }
 
   writeValue(value: string) {
@@ -50,6 +54,10 @@ export class DropdownComponent implements OnInit, ControlValueAccessor {
 
   touched($event: any) {
     this.propagateTouched($event);
+  }
+
+  trackByFn(index: number): number {
+    return index;
   }
 
 }

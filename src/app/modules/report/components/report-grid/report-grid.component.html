@@ -1,0 +1,38 @@
+<div class="table-wrapper">
+    <div class="table">
+        <div class="table-header">
+            <div class="header-item">
+                <a id="name" class="filter__link" href="#">id</a>
+            </div>
+            <div class="header-item">
+                <a id="name" class="filter__link" href="#">Date Completed</a>
+            </div>
+            <div class="header-item">
+                <a id="wins" class="filter__link filter__link--number" href="#">Content</a>
+            </div>
+            <div class="header-item">
+                <a id="draws" class="filter__link filter__link--number" href="#">Type</a>
+            </div>
+            <div class="header-item">
+                <a id="losses" class="filter__link filter__link--number" href="#">Skill</a>
+            </div>
+            <div class="header-item">
+                <a id="total" class="filter__link filter__link--number" href="#">Result</a>
+            </div>
+            <div class="header-item">
+                <a id="total" class="filter__link filter__link--number" href="#">Time Spent</a>
+            </div>
+        </div>
+        <div class="table-content">
+            <div class="table-row" *ngFor="let item of reportData; trackBy:trackByFn">
+                <div class="table-data">{{item.payload.student}} {{item.payload.id}}</div>
+                <div class="table-data">{{item.dateCompleted | date:'dd MMM yyyy' }}</div>
+                <div class="table-data">{{item.content}}</div>
+                <div class="table-data">{{item.type}}</div>
+                <div class="table-data">{{item.skill}}</div>
+                <div class="table-data" appTextColor [result]="item.result">{{item.result}}%</div>
+                <div class="table-data">{{item.timeSpent}}</div>
+            </div>
+        </div>
+    </div>
+</div>

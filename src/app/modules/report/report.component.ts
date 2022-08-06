@@ -5,6 +5,9 @@ import { Observable } from 'rxjs/internal/Observable';
 import { ActivityData } from 'src/app/core/interfaces/activity-data.interface';
 import { ReportData } from 'src/app/core/interfaces/report-data.interface';
 import { HttpClientService } from 'src/app/core/services/http-client.service';
+import * as moment from 'moment';
+import { Classes } from 'src/app/core/interfaces/classes.interface';
+import { FilterForm } from 'src/app/core/interfaces/filter-form.interface';
 
 @Component({
   selector: 'app-report',
@@ -13,31 +16,23 @@ import { HttpClientService } from 'src/app/core/services/http-client.service';
 })
 export class ReportComponent implements OnInit {
 
-  myForm: FormGroup<any> = new FormGroup({ name: new FormControl('') });
-  reportData: ReportData[] | null = null;
-
+  reportData: ReportData[] = [];
+  tempReportData: ReportData[] = [];
+  classes: Classes[] = [];
 
   constructor(
     private httpClientService: HttpClientService
   ) { }
 
   ngOnInit(): void {
-    console.log('REPORT COMP');
-    this.myForm = new FormGroup({
-      name: new FormControl('Sammy'),
-      email: new FormControl(''),
-      message: new FormControl(''),
-      qty: new FormControl(0),
-      select: new FormControl(0)
-    });
-
+    // console.log('REPORT COMP');
     combineLatest({
       activities: this.httpClientService.getActivities(),
       classes: this.httpClientService.getClasses(),
     })
       .pipe(
         map(response => {
-          console.log(response)
+          // console.log(response)
           const activities: ActivityData[] = JSON.parse(response.activities.body);
           const classes = response.classes;
           const reportData: ReportData[] = [];
@@ -47,8 +42,9 @@ export class ReportComponent implements OnInit {
               type: activity.type,
               skill: activity.skill,
               timeSpent: activity.time,
-              dateCompleted: '-',
-              result: this.calculateResult(activity.attempts.values)
+              dateCompleted: this.getCompletedDate(activity.attempts.weeks[0]),
+              result: this.calculateResult(activity.attempts.values),
+              payload: activity
             })
           })
           return { classes, reportData, activities };
@@ -56,22 +52,66 @@ export class ReportComponent implements OnInit {
       )
       .subscribe((data) => {
         console.log('data ', data)
+        this.reportData = data.reportData;
+        this.tempReportData = data.reportData;
+        this.classes = data.classes;
       });
 
   }
 
-  calculateResult(values: number[]): string {
-    return `${values.reduce((x, y) => x + y, 0) / values.length}%`;
+  calculateResult(values: number[]): number {
+    return values.reduce((x, y) => x + y, 0) / values.length;
   }
 
-
-  onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log('Name', form.value.name);
-    console.log('Email', form.value.email);
-    console.log('Message', form.value.message);
-    console.log('Qty', form.value.qty);
-    console.log('Select', form.value.select);
-    new Date()
+  getCompletedDate(date: string): Date {
+    const dateStringSplit = date.split('/');
+    const formattedDate = `${dateStringSplit[1]}/${dateStringSplit[0]}/${dateStringSplit[2]}`
+    const momentDate = moment(formattedDate);
+    return momentDate.toDate()
   }
+
+  onFilterChange(e: FilterForm) {
+    // console.log(e)
+
+    // for (const key in e) {
+    //   if (e.hasOwnProperty(key)) {
+    //     // console.log(key)
+    //     const value = (e as any)[key];
+    //     if (value) {
+    //       switch (key) {
+    //         case 'class':
+    //           console.log(value)
+    //           break;
+    //         case 'student':
+    //           console.log(value)
+    //           break;
+    //       }
+    //     }
+    //   }
+    // }
+
+    if (e.student) {
+      const filteredData = this.tempReportData.filter(obj => {
+        return obj.payload.student === e.student
+      });
+      this.reportData = [...filteredData];
+    }
+    if (e.class) {
+      const filteredData = this.tempReportData.filter(obj => {
+        if (e.class === '1') {
+          return obj.result <= 100 && obj.result >= 90
+        } else if (e.class === '2') {
+          return obj.result <= 89 && obj.result >= 79
+        } else if (e.class === '3') {
+          return obj.result <= 79 && obj.result >= 59
+        } else if (e.class === '4') {
+          return obj.result <= 59 && obj.result >= 0
+        } else {
+          return []
+        }
+      });
+      this.reportData = [...filteredData];
+    }
+  }
+
 }

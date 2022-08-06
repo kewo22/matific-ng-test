@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent } from './components/button/button.component';
+import { TextColorDirective } from '../core/directives/text-color.directive';
 
 
 @NgModule({
   declarations: [
     InputComponent,
     DropdownComponent,
-    ButtonComponent
+    ButtonComponent,
+    TextColorDirective
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ButtonComponent } from './components/button/button.component';
   exports: [
     InputComponent,
     DropdownComponent,
-    ButtonComponent
+    ButtonComponent,
+    TextColorDirective
   ]
 })
 export class SharedModule { }

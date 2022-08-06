@@ -1,0 +1,4 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm)" class="form-wrapper">
+    <app-dropdown class="class-filter-dropdown" label="Class" formControlName="class" [options]="classOptions"></app-dropdown>
+    <app-dropdown label="Students" formControlName="student" [options]="classStudents"></app-dropdown>
+</form>
