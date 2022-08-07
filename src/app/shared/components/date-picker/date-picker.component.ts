@@ -1,29 +1,28 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  selector: 'app-date-picker',
+  templateUrl: './date-picker.component.html',
+  styleUrls: ['./date-picker.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: InputComponent
+      useExisting: DatePickerComponent
     }
   ]
 })
-export class InputComponent implements OnInit, ControlValueAccessor {
+export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
   @Input() label: string = 'label';
-  @Input() type: 'text' | 'password' = 'text';
-  @Input() placeholder: string = '';
 
-  _value = "";
+  _value = ''; // 2014-01-01
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit(): void {
+  }
 
   get value(): string {
     return this._value;

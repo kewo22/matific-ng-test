@@ -1,9 +1,6 @@
 <div class="table-wrapper">
     <div class="table">
         <div class="table-header">
-            <!-- <div class="header-item">
-                id
-            </div> -->
             <div class="header-item" *ngFor="let column of columns; trackBy:trackByFn">
                 {{column.text}}
                 <span *ngIf="column.sort.isEnabled" (click)="onSort(column.key)" class="sort-icon">
@@ -14,15 +11,27 @@
             </div>
         </div>
         <div class="table-content">
-            <div class="table-row" *ngFor="let item of reportData; trackBy:trackByFn">
-                <!-- <div class="table-data">{{item.payload.student}} {{item.payload.id}}</div> -->
-                <div class="table-data">{{item.dateCompleted | date:'dd MMM yyyy' }}</div>
-                <div class="table-data">{{item.content}}</div>
-                <div class="table-data">{{item.type}}</div>
-                <div class="table-data">{{item.skill}}</div>
-                <div class="table-data" appTextColor [result]="item.result">{{item.result}}%</div>
-                <div class="table-data">{{item.timeSpent}}</div>
-            </div>
+            <ng-container *ngIf="!isLoading && reportData.length">
+                <div class="table-row" *ngFor="let item of reportData; trackBy:trackByFn">
+                    <div class="table-data">{{item.payload.student}}</div>
+                    <div class="table-data">{{item.dateCompleted | date:'dd MMM yyyy' }}</div>
+                    <div class="table-data">{{item.content}}</div>
+                    <div class="table-data">{{item.type}}</div>
+                    <div class="table-data">{{item.skill}}</div>
+                    <div class="table-data" appTextColor [result]="item.result">{{item.result}}%</div>
+                    <div class="table-data">{{item.timeSpent}}</div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!isLoading && !reportData.length">
+                <div class="table-row">
+                    "No content has been completed by Fname for date from to date to"
+                </div>
+            </ng-container>
+            <ng-container *ngIf="isLoading">
+                <div class="table-row">
+                    loading
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { GridColumn } from 'src/app/core/interfaces/grid-column.interface';
 import { ReportData } from 'src/app/core/interfaces/report-data.interface';
 
@@ -7,11 +7,20 @@ import { ReportData } from 'src/app/core/interfaces/report-data.interface';
   templateUrl: './report-grid.component.html',
   styleUrls: ['./report-grid.component.scss']
 })
-export class ReportGridComponent implements OnInit {
+export class ReportGridComponent implements OnInit, OnChanges {
 
+  @Input() isLoading: boolean = true;
   @Input() reportData: ReportData[] = [];
   tempReportData: ReportData[] = [];
   columns: GridColumn[] = [
+    {
+      key: 'std',
+      text: 'std',
+      sort: {
+        isEnabled: true,
+        type: 'none'
+      }
+    },
     {
       key: 'dateCompleted',
       text: 'Date Completed',
@@ -72,7 +81,11 @@ export class ReportGridComponent implements OnInit {
     // this.tempColumns = [...this.columns];
   }
 
-  onSort(key: string) {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.tempReportData = changes['reportData']['currentValue'] as unknown as ReportData[];
+  }
+
+  onSort(key: string): void {
     const foundColumn = this.columns.find(obj => { return obj.key === key; });
     const index = this.columns.findIndex(obj => { return obj.key === key; });
     switch (key) {

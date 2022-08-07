@@ -1,4 +1,8 @@
 <form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm)" class="form-wrapper">
-    <app-dropdown class="class-filter-dropdown" label="Class" formControlName="class" [options]="classOptions"></app-dropdown>
-    <app-dropdown label="Students" formControlName="student" [options]="classStudents"></app-dropdown>
+    <app-dropdown class="class-filter-dropdown" label="Class" formControlName="class" [options]="classOptions">
+    </app-dropdown>
+    <app-dropdown class="student-filter-dropdown" label="Students" formControlName="student" [options]="classStudents">
+    </app-dropdown>
+    <app-date-picker class="from-date-filter-dropdown" label="From" formControlName="fromDate"></app-date-picker>
+    <app-date-picker label="To" formControlName="toDate"></app-date-picker>
 </form>

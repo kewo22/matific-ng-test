@@ -11,13 +11,15 @@ import { TextColorDirective } from '../core/directives/text-color.directive';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
     InputComponent,
     DropdownComponent,
     ButtonComponent,
-    TextColorDirective
+    TextColorDirective,
+    DatePickerComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
     DropdownComponent,
     ButtonComponent,
     TextColorDirective,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DatePickerComponent
   ]
 })
 export class SharedModule {

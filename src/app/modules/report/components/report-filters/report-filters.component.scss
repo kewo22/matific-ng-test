@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: row;
 }
-.class-filter-dropdown {
+.class-filter-dropdown,
+.student-filter-dropdown,
+.from-date-filter-dropdown {
   margin-right: 1rem;
 }

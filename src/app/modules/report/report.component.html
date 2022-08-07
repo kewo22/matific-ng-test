@@ -2,6 +2,6 @@
     <h1>Reporting - Student Snapshot</h1>
     <app-report-filters *ngIf="classes.length" [classes]="classes" (onFilterChange)="onFilterChange($event)">
     </app-report-filters>
-    <app-report-grid *ngIf="reportData.length" [reportData]=" reportData">
+    <app-report-grid [reportData]=" reportData" [isLoading]="isDataLoading">
     </app-report-grid>
 </div>

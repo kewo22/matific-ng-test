@@ -30,20 +30,21 @@ export class ReportFiltersComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.makeDataForDropDowns();
-
     this.filterForm.valueChanges
       .pipe(
         takeUntil(this.destroy$)
-      ).subscribe(values => {
+      )
+      .subscribe(values => {
         this.onFilterChange.emit(values);
       });
-
   }
 
   initForm(): FormGroup {
     return new FormGroup({
       class: new FormControl(''),
       student: new FormControl(''),
+      fromDate: new FormControl(''),
+      toDate: new FormControl(''),
     });
   }
 
