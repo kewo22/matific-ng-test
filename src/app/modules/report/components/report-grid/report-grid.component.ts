@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FilterForm } from 'src/app/core/interfaces/filter-form.interface';
 import { GridColumn } from 'src/app/core/interfaces/grid-column.interface';
 import { ReportData } from 'src/app/core/interfaces/report-data.interface';
 
@@ -11,6 +12,7 @@ export class ReportGridComponent implements OnInit, OnChanges {
 
   @Input() isLoading: boolean = true;
   @Input() reportData: ReportData[] = [];
+  @Input() filterObj: FilterForm | null = null;
   tempReportData: ReportData[] = [];
   columns: GridColumn[] = [
     {

@@ -20,6 +20,7 @@ export class ReportComponent implements OnInit {
   tempReportData: ReportData[] = [];
   classes: Classes[] = [];
   isDataLoading: boolean = true;
+  filterObj: FilterForm | null = null;
 
   constructor(
     private httpClientService: HttpClientService
@@ -80,6 +81,7 @@ export class ReportComponent implements OnInit {
   }
 
   onFilterChange(e: FilterForm) {
+    this.filterObj = e;
     let filteredData: ReportData[] = [];
     if (e.fromDate && e.toDate) {
       const dataToFilter = filteredData.length ? filteredData : this.tempReportData;
@@ -90,7 +92,6 @@ export class ReportComponent implements OnInit {
       })
       filteredData = [...filteredByDate];
     }
-
     for (const key in e) {
       if (e.hasOwnProperty(key)) {
         const value = (e as any)[key];
@@ -129,7 +130,7 @@ export class ReportComponent implements OnInit {
 
   toDateObj(value: string): Date {
     const splittedValue = value.split('-');
-    const date = new Date(+splittedValue[0], +splittedValue[1]-1, +splittedValue[2])
+    const date = new Date(+splittedValue[0], +splittedValue[1] - 1, +splittedValue[2])
     return date
   }
 

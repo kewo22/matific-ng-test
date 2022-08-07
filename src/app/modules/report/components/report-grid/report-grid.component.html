@@ -24,7 +24,8 @@
             </ng-container>
             <ng-container *ngIf="!isLoading && !reportData.length">
                 <div class="table-row">
-                    "No content has been completed by Fname for date from to date to"
+                    No content has been completed by {{filterObj?.student}} for date {{filterObj?.fromDate}} to date
+                    {{filterObj?.toDate}}
                 </div>
             </ng-container>
             <ng-container *ngIf="isLoading">
