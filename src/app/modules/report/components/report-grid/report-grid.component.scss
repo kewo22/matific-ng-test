@@ -35,7 +35,7 @@ $color-form-highlight: #eeeeee;
 
   .table-content {
     margin-top: 50px;
-    
+
     .table-row {
       display: flex;
       width: 100%;
@@ -53,4 +53,9 @@ $color-form-highlight: #eeeeee;
 
 .header-item {
   text-transform: uppercase;
+
+  .sort-icon {
+    cursor: pointer;
+    margin-left: 1rem;
+  }
 }

@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/authentication/login/login.component';
 import { SharedModule } from './shared/shared.module';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+// import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { far } from '@fortawesome/free-regular-svg-icons';
+// import { fas } from '@fortawesome/free-solid-svg-icons';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
+    // FontAwesomeModule,
     HttpClientModule
   ],
   providers: [],
@@ -29,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppModule {
 
-  constructor(library: FaIconLibrary) {
-    library.addIconPacks(fas, far);
-  }
+  // constructor(library: FaIconLibrary) {
+  //   library.addIconPacks(fas, far);
+  // }
 }

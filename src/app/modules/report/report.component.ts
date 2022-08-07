@@ -60,7 +60,8 @@ export class ReportComponent implements OnInit {
   }
 
   calculateResult(values: number[]): number {
-    return values.reduce((x, y) => x + y, 0) / values.length;
+    // return values.reduce((x, y) => x + y, 0) / values.length;
+    return Math.max(...values);
   }
 
   getCompletedDate(date: string): Date {

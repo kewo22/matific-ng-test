@@ -8,7 +8,9 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent } from './components/button/button.component';
 import { TextColorDirective } from '../core/directives/text-color.directive';
-
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,14 @@ import { TextColorDirective } from '../core/directives/text-color.directive';
     InputComponent,
     DropdownComponent,
     ButtonComponent,
-    TextColorDirective
+    TextColorDirective,
+    FontAwesomeModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
+
+}
